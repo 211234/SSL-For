@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Analizador Léxico y Sintáctico</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="mt-5">Analizador Léxico y Sintáctico</h1>
+      <form method="post" action="/analyze">
+        <div class="form-group">
+          <label for="code">Código:</label>
+          <textarea class="form-control" id="code" name="code" rows="10">{{ code if code else '' }}</textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Analizar</button>
+        <a href="/reset" class="btn btn-secondary">Reiniciar</a>
+      </form>
+      
+      {% if success %}
+      <h2 class="mt-5 text-success">{{ success }}</h2>
+      {% endif %}
+      
+      {% if tokens %}
+      <h2 class="mt-5">Tokens (Total: {{ total_tokens }})</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Linea</th>
+            <th>Posicion</th>
+            <th>Tipo</th>
+            <th>Valor</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for token in tokens %}
+          <tr>
+            <td>{{ token.line }}</td>
+            <td>{{ token.position }}</td>
+            <td>{{ token.type }}</td>
+            <td>{{ token.value }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% endif %}
+      
+      {% if errors %}
+      <h2 class="mt-5">Errores</h2>
+      <ul class="list-group">
+        {% for error in errors %}
+        <li class="list-group-item list-group-item-danger">{{ error }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    </div>
+  </body>
+</html>

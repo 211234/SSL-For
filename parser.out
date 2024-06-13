@@ -1,0 +1,326 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> stmts
+Rule 2     stmts -> stmt
+Rule 3     stmts -> stmts stmt
+Rule 4     stmt -> for_stmt
+Rule 5     stmt -> system_out_println
+Rule 6     for_stmt -> FOR LPAREN ID EQUALS NUMBER SEMICOLON ID LESS_THAN_EQUAL NUMBER SEMICOLON ID INCREASE RPAREN LBRACE stmts RBRACE
+Rule 7     system_out_println -> SYSTEM DOT OUT DOT PRINTLN LPAREN ID RPAREN SEMICOLON
+
+Terminals, with rules where they appear
+
+DOT                  : 7 7
+EQUALS               : 6
+FOR                  : 6
+ID                   : 6 6 6 7
+INCREASE             : 6
+LBRACE               : 6
+LESS_THAN_EQUAL      : 6
+LPAREN               : 6 7
+NUMBER               : 6 6
+OUT                  : 7
+PRINTLN              : 7
+RBRACE               : 6
+RPAREN               : 6 7
+SEMICOLON            : 6 6 7
+SYSTEM               : 7
+error                : 
+
+Nonterminals, with rules where they appear
+
+for_stmt             : 4
+program              : 0
+stmt                 : 2 3
+stmts                : 1 3 6
+system_out_println   : 5
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . stmts
+    (2) stmts -> . stmt
+    (3) stmts -> . stmts stmt
+    (4) stmt -> . for_stmt
+    (5) stmt -> . system_out_println
+    (6) for_stmt -> . FOR LPAREN ID EQUALS NUMBER SEMICOLON ID LESS_THAN_EQUAL NUMBER SEMICOLON ID INCREASE RPAREN LBRACE stmts RBRACE
+    (7) system_out_println -> . SYSTEM DOT OUT DOT PRINTLN LPAREN ID RPAREN SEMICOLON
+
+    FOR             shift and go to state 6
+    SYSTEM          shift and go to state 7
+
+    program                        shift and go to state 1
+    stmts                          shift and go to state 2
+    stmt                           shift and go to state 3
+    for_stmt                       shift and go to state 4
+    system_out_println             shift and go to state 5
+
+state 1
+
+    (0) S' -> program .
+
+
+
+state 2
+
+    (1) program -> stmts .
+    (3) stmts -> stmts . stmt
+    (4) stmt -> . for_stmt
+    (5) stmt -> . system_out_println
+    (6) for_stmt -> . FOR LPAREN ID EQUALS NUMBER SEMICOLON ID LESS_THAN_EQUAL NUMBER SEMICOLON ID INCREASE RPAREN LBRACE stmts RBRACE
+    (7) system_out_println -> . SYSTEM DOT OUT DOT PRINTLN LPAREN ID RPAREN SEMICOLON
+
+    $end            reduce using rule 1 (program -> stmts .)
+    FOR             shift and go to state 6
+    SYSTEM          shift and go to state 7
+
+    stmt                           shift and go to state 8
+    for_stmt                       shift and go to state 4
+    system_out_println             shift and go to state 5
+
+state 3
+
+    (2) stmts -> stmt .
+
+    FOR             reduce using rule 2 (stmts -> stmt .)
+    SYSTEM          reduce using rule 2 (stmts -> stmt .)
+    $end            reduce using rule 2 (stmts -> stmt .)
+    RBRACE          reduce using rule 2 (stmts -> stmt .)
+
+
+state 4
+
+    (4) stmt -> for_stmt .
+
+    FOR             reduce using rule 4 (stmt -> for_stmt .)
+    SYSTEM          reduce using rule 4 (stmt -> for_stmt .)
+    $end            reduce using rule 4 (stmt -> for_stmt .)
+    RBRACE          reduce using rule 4 (stmt -> for_stmt .)
+
+
+state 5
+
+    (5) stmt -> system_out_println .
+
+    FOR             reduce using rule 5 (stmt -> system_out_println .)
+    SYSTEM          reduce using rule 5 (stmt -> system_out_println .)
+    $end            reduce using rule 5 (stmt -> system_out_println .)
+    RBRACE          reduce using rule 5 (stmt -> system_out_println .)
+
+
+state 6
+
+    (6) for_stmt -> FOR . LPAREN ID EQUALS NUMBER SEMICOLON ID LESS_THAN_EQUAL NUMBER SEMICOLON ID INCREASE RPAREN LBRACE stmts RBRACE
+
+    LPAREN          shift and go to state 9
+
+
+state 7
+
+    (7) system_out_println -> SYSTEM . DOT OUT DOT PRINTLN LPAREN ID RPAREN SEMICOLON
+
+    DOT             shift and go to state 10
+
+
+state 8
+
+    (3) stmts -> stmts stmt .
+
+    FOR             reduce using rule 3 (stmts -> stmts stmt .)
+    SYSTEM          reduce using rule 3 (stmts -> stmts stmt .)
+    $end            reduce using rule 3 (stmts -> stmts stmt .)
+    RBRACE          reduce using rule 3 (stmts -> stmts stmt .)
+
+
+state 9
+
+    (6) for_stmt -> FOR LPAREN . ID EQUALS NUMBER SEMICOLON ID LESS_THAN_EQUAL NUMBER SEMICOLON ID INCREASE RPAREN LBRACE stmts RBRACE
+
+    ID              shift and go to state 11
+
+
+state 10
+
+    (7) system_out_println -> SYSTEM DOT . OUT DOT PRINTLN LPAREN ID RPAREN SEMICOLON
+
+    OUT             shift and go to state 12
+
+
+state 11
+
+    (6) for_stmt -> FOR LPAREN ID . EQUALS NUMBER SEMICOLON ID LESS_THAN_EQUAL NUMBER SEMICOLON ID INCREASE RPAREN LBRACE stmts RBRACE
+
+    EQUALS          shift and go to state 13
+
+
+state 12
+
+    (7) system_out_println -> SYSTEM DOT OUT . DOT PRINTLN LPAREN ID RPAREN SEMICOLON
+
+    DOT             shift and go to state 14
+
+
+state 13
+
+    (6) for_stmt -> FOR LPAREN ID EQUALS . NUMBER SEMICOLON ID LESS_THAN_EQUAL NUMBER SEMICOLON ID INCREASE RPAREN LBRACE stmts RBRACE
+
+    NUMBER          shift and go to state 15
+
+
+state 14
+
+    (7) system_out_println -> SYSTEM DOT OUT DOT . PRINTLN LPAREN ID RPAREN SEMICOLON
+
+    PRINTLN         shift and go to state 16
+
+
+state 15
+
+    (6) for_stmt -> FOR LPAREN ID EQUALS NUMBER . SEMICOLON ID LESS_THAN_EQUAL NUMBER SEMICOLON ID INCREASE RPAREN LBRACE stmts RBRACE
+
+    SEMICOLON       shift and go to state 17
+
+
+state 16
+
+    (7) system_out_println -> SYSTEM DOT OUT DOT PRINTLN . LPAREN ID RPAREN SEMICOLON
+
+    LPAREN          shift and go to state 18
+
+
+state 17
+
+    (6) for_stmt -> FOR LPAREN ID EQUALS NUMBER SEMICOLON . ID LESS_THAN_EQUAL NUMBER SEMICOLON ID INCREASE RPAREN LBRACE stmts RBRACE
+
+    ID              shift and go to state 19
+
+
+state 18
+
+    (7) system_out_println -> SYSTEM DOT OUT DOT PRINTLN LPAREN . ID RPAREN SEMICOLON
+
+    ID              shift and go to state 20
+
+
+state 19
+
+    (6) for_stmt -> FOR LPAREN ID EQUALS NUMBER SEMICOLON ID . LESS_THAN_EQUAL NUMBER SEMICOLON ID INCREASE RPAREN LBRACE stmts RBRACE
+
+    LESS_THAN_EQUAL shift and go to state 21
+
+
+state 20
+
+    (7) system_out_println -> SYSTEM DOT OUT DOT PRINTLN LPAREN ID . RPAREN SEMICOLON
+
+    RPAREN          shift and go to state 22
+
+
+state 21
+
+    (6) for_stmt -> FOR LPAREN ID EQUALS NUMBER SEMICOLON ID LESS_THAN_EQUAL . NUMBER SEMICOLON ID INCREASE RPAREN LBRACE stmts RBRACE
+
+    NUMBER          shift and go to state 23
+
+
+state 22
+
+    (7) system_out_println -> SYSTEM DOT OUT DOT PRINTLN LPAREN ID RPAREN . SEMICOLON
+
+    SEMICOLON       shift and go to state 24
+
+
+state 23
+
+    (6) for_stmt -> FOR LPAREN ID EQUALS NUMBER SEMICOLON ID LESS_THAN_EQUAL NUMBER . SEMICOLON ID INCREASE RPAREN LBRACE stmts RBRACE
+
+    SEMICOLON       shift and go to state 25
+
+
+state 24
+
+    (7) system_out_println -> SYSTEM DOT OUT DOT PRINTLN LPAREN ID RPAREN SEMICOLON .
+
+    FOR             reduce using rule 7 (system_out_println -> SYSTEM DOT OUT DOT PRINTLN LPAREN ID RPAREN SEMICOLON .)
+    SYSTEM          reduce using rule 7 (system_out_println -> SYSTEM DOT OUT DOT PRINTLN LPAREN ID RPAREN SEMICOLON .)
+    $end            reduce using rule 7 (system_out_println -> SYSTEM DOT OUT DOT PRINTLN LPAREN ID RPAREN SEMICOLON .)
+    RBRACE          reduce using rule 7 (system_out_println -> SYSTEM DOT OUT DOT PRINTLN LPAREN ID RPAREN SEMICOLON .)
+
+
+state 25
+
+    (6) for_stmt -> FOR LPAREN ID EQUALS NUMBER SEMICOLON ID LESS_THAN_EQUAL NUMBER SEMICOLON . ID INCREASE RPAREN LBRACE stmts RBRACE
+
+    ID              shift and go to state 26
+
+
+state 26
+
+    (6) for_stmt -> FOR LPAREN ID EQUALS NUMBER SEMICOLON ID LESS_THAN_EQUAL NUMBER SEMICOLON ID . INCREASE RPAREN LBRACE stmts RBRACE
+
+    INCREASE        shift and go to state 27
+
+
+state 27
+
+    (6) for_stmt -> FOR LPAREN ID EQUALS NUMBER SEMICOLON ID LESS_THAN_EQUAL NUMBER SEMICOLON ID INCREASE . RPAREN LBRACE stmts RBRACE
+
+    RPAREN          shift and go to state 28
+
+
+state 28
+
+    (6) for_stmt -> FOR LPAREN ID EQUALS NUMBER SEMICOLON ID LESS_THAN_EQUAL NUMBER SEMICOLON ID INCREASE RPAREN . LBRACE stmts RBRACE
+
+    LBRACE          shift and go to state 29
+
+
+state 29
+
+    (6) for_stmt -> FOR LPAREN ID EQUALS NUMBER SEMICOLON ID LESS_THAN_EQUAL NUMBER SEMICOLON ID INCREASE RPAREN LBRACE . stmts RBRACE
+    (2) stmts -> . stmt
+    (3) stmts -> . stmts stmt
+    (4) stmt -> . for_stmt
+    (5) stmt -> . system_out_println
+    (6) for_stmt -> . FOR LPAREN ID EQUALS NUMBER SEMICOLON ID LESS_THAN_EQUAL NUMBER SEMICOLON ID INCREASE RPAREN LBRACE stmts RBRACE
+    (7) system_out_println -> . SYSTEM DOT OUT DOT PRINTLN LPAREN ID RPAREN SEMICOLON
+
+    FOR             shift and go to state 6
+    SYSTEM          shift and go to state 7
+
+    stmts                          shift and go to state 30
+    stmt                           shift and go to state 3
+    for_stmt                       shift and go to state 4
+    system_out_println             shift and go to state 5
+
+state 30
+
+    (6) for_stmt -> FOR LPAREN ID EQUALS NUMBER SEMICOLON ID LESS_THAN_EQUAL NUMBER SEMICOLON ID INCREASE RPAREN LBRACE stmts . RBRACE
+    (3) stmts -> stmts . stmt
+    (4) stmt -> . for_stmt
+    (5) stmt -> . system_out_println
+    (6) for_stmt -> . FOR LPAREN ID EQUALS NUMBER SEMICOLON ID LESS_THAN_EQUAL NUMBER SEMICOLON ID INCREASE RPAREN LBRACE stmts RBRACE
+    (7) system_out_println -> . SYSTEM DOT OUT DOT PRINTLN LPAREN ID RPAREN SEMICOLON
+
+    RBRACE          shift and go to state 31
+    FOR             shift and go to state 6
+    SYSTEM          shift and go to state 7
+
+    stmt                           shift and go to state 8
+    for_stmt                       shift and go to state 4
+    system_out_println             shift and go to state 5
+
+state 31
+
+    (6) for_stmt -> FOR LPAREN ID EQUALS NUMBER SEMICOLON ID LESS_THAN_EQUAL NUMBER SEMICOLON ID INCREASE RPAREN LBRACE stmts RBRACE .
+
+    FOR             reduce using rule 6 (for_stmt -> FOR LPAREN ID EQUALS NUMBER SEMICOLON ID LESS_THAN_EQUAL NUMBER SEMICOLON ID INCREASE RPAREN LBRACE stmts RBRACE .)
+    SYSTEM          reduce using rule 6 (for_stmt -> FOR LPAREN ID EQUALS NUMBER SEMICOLON ID LESS_THAN_EQUAL NUMBER SEMICOLON ID INCREASE RPAREN LBRACE stmts RBRACE .)
+    $end            reduce using rule 6 (for_stmt -> FOR LPAREN ID EQUALS NUMBER SEMICOLON ID LESS_THAN_EQUAL NUMBER SEMICOLON ID INCREASE RPAREN LBRACE stmts RBRACE .)
+    RBRACE          reduce using rule 6 (for_stmt -> FOR LPAREN ID EQUALS NUMBER SEMICOLON ID LESS_THAN_EQUAL NUMBER SEMICOLON ID INCREASE RPAREN LBRACE stmts RBRACE .)
+
